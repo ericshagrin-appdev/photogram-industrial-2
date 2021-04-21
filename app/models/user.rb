@@ -7,11 +7,12 @@
 #  email                  :citext           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  likes_count            :integer          default(0)
+#  photos_count           :integer
 #  private                :boolean          default(TRUE)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  username               :string
+#  username               :citext
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -40,5 +41,5 @@ class User < ApplicationRecord
   has_many :received_follow_requests, class_name: "FollowRequest", foreign_key: :recipient_id
   has_many :sent_follow_requests, class_name: "FollowRequest", foreign_key: :sender_id
 
-  validates :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: true
 end
