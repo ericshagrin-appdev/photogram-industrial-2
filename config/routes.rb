@@ -3,15 +3,15 @@ Rails.application.routes.draw do
 
   #get "/users/:id" => "users#show", as: users
 
-
+  
   devise_for :users
 
   resources :comments
   resources :follow_requests
   resources :likes
   resources :photos
-  resources :users, only: :show
 
+  get "/:username" => "users#show"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
