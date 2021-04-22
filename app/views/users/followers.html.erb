@@ -1,10 +1,3 @@
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-
-    <h1>
-      <%= @user.username%>
-    </h1>
-
     <ul class="nav nav-pills nav-justified">
       <li class="nav-item">
         <%= link_to "Posts", user_path(@user.username), class: "nav-link"%>
@@ -24,14 +17,9 @@
 
     </ul>
 
-  </div>
-</div>
-
-<%= current_user.own_photos.count %>
-
-
-  <% current_user.own_photos.each do |photo|%>
-
-   <%= render "photos/photo", photo: photo%>
+  <ul class="list-group">
+  <% current_user.followers.each do |follower|%>
+      <li class="list-group-item"><%link_to follower.username, user_path(@user.username) %></li>
 
   <% end %>
+  </ul>
